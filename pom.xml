@@ -381,6 +381,7 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-eclipse-plugin</artifactId>
+				<version>2.6</version>
 				<!-- <configuration> <downloadSources>true</downloadSources> </configuration> -->
 			</plugin>
 			<!-- Add documentation locales here -->
