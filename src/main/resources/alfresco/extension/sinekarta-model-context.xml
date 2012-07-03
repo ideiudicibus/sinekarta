@@ -1,0 +1,51 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE beans PUBLIC '-//SPRING//DTD BEAN//EN' 'http://www.springframework.org/dtd/spring-beans.dtd'>
+<!-- 
+/*
+ * Copyright (C) 2010 - 2012 Jenia Software.
+ *
+ * This file is part of Sinekarta
+ *
+ * Sinekarta is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * Sinekarta is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ */
+ -->
+<beans>
+	<!-- 
+	constraint definitions
+	this bean define constraint for document types, reading document type table
+	 -->
+	<bean id="sinekartaDocumentTypeConstraintInitializer"
+		class="org.sinekarta.alfresco.constraint.DocumentTypeConstraint">
+		<property name="sinekartaDao">
+			<ref bean="SinekartaDao" />
+		</property>
+	</bean>
+	<!-- 
+	sinekarta model definition 
+	-->
+	<bean id="sinekarta.dictionaryBootstrap" parent="dictionaryModelBootstrap"
+		depends-on="dictionaryBootstrap">
+		<property name="models">
+			<list>
+				<value>alfresco/extension/sinekarta/model/sinekartaModel.xml</value>
+				<value>alfresco/extension/sinekarta/model/sinekartaInvoiceModel.xml</value>
+			</list>
+		</property>
+	</bean>
+
+	<!-- 
+	sinekarta permissions 
+	-->
+	<bean id="sinekarta.permissionBootstrap" parent="permissionModelBootstrap">
+		<property name="model" value="alfresco/extension/sinekarta/model/sinekartaPermissionDefinitions.xml"/> 
+	</bean> 
+</beans>

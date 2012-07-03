@@ -1,0 +1,65 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE beans PUBLIC '-//SPRING//DTD BEAN//EN' 'http://www.springframework.org/dtd/spring-beans.dtd'>
+<!-- 
+/*
+ * Copyright (C) 2010 - 2012 Jenia Software.
+ *
+ * This file is part of Sinekarta
+ *
+ * Sinekarta is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * Sinekarta is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ */
+ -->
+<beans>
+	<!-- 
+	sinekarta hibernate session factory
+	used to access db via hibernate
+	extends SinekartaSessionFactoryBase
+	 -->
+	<bean id="SinekartaSessionFactory"
+		class="org.springframework.orm.hibernate3.LocalSessionFactoryBean"
+		parent="SinekartaSessionFactoryBase">
+		<property name="dataSource">
+			<ref bean="dataSource" />
+		</property>
+	</bean>
+
+	<!-- 
+	basic sinekarta hibernate session factory
+	this define all hbm
+	 -->
+	<bean id="SinekartaSessionFactoryBase" abstract="true">
+		<property name="schemaUpdate">
+			<value>false</value>
+		</property>
+		<property name="mappingResources">
+			<list>
+				<value>org/sinekarta/alfresco/configuration/hibernate/DocumentType.hbm.xml</value>
+			</list>
+		</property>
+	</bean>
+
+	<!-- 
+	definitio of sinekarta dao
+	using this bean sinekarta can access the database
+	 -->
+	<bean id="SinekartaDao"
+		class="org.sinekarta.alfresco.configuration.dao.SinekartaDao"
+		init-method="verify">
+		<property name="sessionFactory">
+			<ref bean="SinekartaSessionFactory" />
+		</property>
+		<property name="sinekartaEditionService">
+			<ref bean="SinekartaEditionService" />
+		</property>
+	</bean>
+	
+</beans>            
