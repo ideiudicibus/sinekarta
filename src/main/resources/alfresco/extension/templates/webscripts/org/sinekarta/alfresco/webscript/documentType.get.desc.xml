@@ -1,0 +1,36 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!-- 
+/*
+ * Copyright (C) 2010 - 2012 Jenia Software.
+ *
+ * This file is part of Sinekarta
+ *
+ * Sinekarta is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * Sinekarta is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ */
+ -->
+<webscript>
+  <shortname>sinekarta documentType</shortname>
+  <description>
+	script to get a single or a list of document types.
+	accept three optional parameters : 
+	documentTypeId - to query a document type with the specified document type id
+	documentTypeDescription - to wuery a document type "like" the given description
+	full - if true (the default) only id and description is returned for each document type  
+	if no parameter is given, this service will return the complete list of all document types
+	supported return types : xml, json 
+	default : xml
+  </description>
+  <url>/sinekarta/documentType?documentTypeId={documentTypeId?};documentTypeDescription={documentTypeDescription?};full={full?}</url>
+  <format default="xml">any</format>
+  <authentication>user</authentication>
+  <transaction>required</transaction>
+</webscript>

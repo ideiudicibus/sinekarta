@@ -1,0 +1,48 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!-- 
+/*
+ * Copyright (C) 2010 - 2012 Jenia Software.
+ *
+ * This file is part of Sinekarta
+ *
+ * Sinekarta is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * Sinekarta is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ */
+ -->
+<webscript>
+  <shortname>sinekarta AE timestamp mark initialization</shortname>
+  <description>
+	script to initialize a timestamp mark session.
+	accept one mandatory parameters as url parameter : 
+	requestType - values : json or xml - tell to the service that the body of this post request contains the corresponding request format
+	the body of the post must contains an area with this parameters : 
+	json : {"markDocumentArea":"xxx", "nodeRef":"a"}
+	xml : 
+	<sinekarta>
+		<markDocumentArea>xxx</markDocumentArea>
+		<nodeRef>nodeRef</nodeRef>
+	</sinekarta>
+	NodeRef must be the nodeRef a common parent of all document you need to sign in this format : workspace://SpacesStore/e55635f6-c8c9-4e0d-ae99-55e600a77a1d
+	This service will return the digitalSignatureArea for subsequent remote digital signature calculation. The digitalSignatureArea it's an handle to be passed to next calls.
+	for detail about format of content received, please see org.sinekarta.alfresco.webscript.request.DigitalSignatureInitRequest
+	supported return types : xml, json 
+	default : xml
+	To use this service you have to call : 
+	1. timestampMarkInit - receiving a common parent of all document and , returning an digitalSignatureArea
+	2...n. timestampMarkPrepare - receiving digitalSignatureArea and the document to be signed, returning digitalSignatureArea
+	n+1. timestampMarkApply - receiving digitalSignatureArea and a common parent of all document (same of 1), returning none
+	The digitalSignatureArea it's an handle to be saved and passed to client part of digital signature.
+  </description>
+  <url>/sinekarta/AETimestampMarkInit?requestType={requestType}</url>
+  <format default="xml">any</format>
+  <authentication>user</authentication>
+  <transaction>required</transaction>
+</webscript>

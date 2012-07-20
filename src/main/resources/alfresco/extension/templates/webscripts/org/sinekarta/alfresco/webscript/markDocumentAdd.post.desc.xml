@@ -1,0 +1,46 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!-- 
+/*
+ * Copyright (C) 2010 - 2012 Jenia Software.
+ *
+ * This file is part of Sinekarta
+ *
+ * Sinekarta is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * Sinekarta is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ */
+ -->
+<webscript>
+  <shortname>add a document to a timestamp mark document.</shortname>
+  <description>
+	script to add a document to a new timestamp mark document 
+	accept one mandatory parameters as url parameter : 
+	requestType - values : json or xml - tell to the service that the body of this post request contains the corresponding request format
+	the body of the post must contains an area with this parameters : 
+	json : {"markDocumentArea" : "xxx", "nodeRefs":"a,b,c"}
+	xml : 
+	<sinekarta>
+		<markDocumentArea>xxx</markDocumentArea>
+		<nodeRefs>nodeRef,nodeRef,nodeRef</nodeRefs>
+	</sinekarta>
+	markDocumentArea is the handle returned from previous markDocumentInit call
+	This service will return the markDocumentArea for subsequent document elaboration. The markDocumentArea it's an handle to be passed to next calls.
+	supported return types : xml, json 
+	default : xml
+	To use this service you have to call : 
+	1. markDocumentInit - see corresponding action
+	2...n. markDocumentAdd - see corresponding action
+	n+1. markDocumentPrepare - see corresponding action
+  </description>
+  <url>/sinekarta/markDocumentAdd?requestType={requestType}</url>
+  <format default="xml">any</format>
+  <authentication>user</authentication>
+  <transaction>required</transaction>
+</webscript>

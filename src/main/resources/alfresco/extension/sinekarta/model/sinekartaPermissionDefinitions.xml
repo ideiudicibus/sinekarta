@@ -1,0 +1,63 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!-- 
+/*
+ * Copyright (C) 2010 - 2012 Jenia Software.
+ *
+ * This file is part of Sinekarta
+ *
+ * Sinekarta is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * Sinekarta is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ */
+ -->
+<!DOCTYPE permissions >
+<!--PUBLIC '-//ALFRECSO//DTD PERMISSIONS//EN' 'permissionSchema.dtd' -->
+
+<!-- Note: the above is commented out as spring does not seem to find the 
+	dtd -->
+
+<!-- ============================================ -->
+<!-- The base permission model for the repository -->
+<!-- ============================================ -->
+
+
+<!-- The parent permission checks were removed 20/1/2006 -->
+
+
+<permissions>
+
+	<!-- Namespaces used in type references -->
+
+	<namespaces>
+		<namespace uri="http://www.alfresco.org/model/system/1.0"
+			prefix="sys" />
+		<namespace uri="http://www.alfresco.org/model/content/1.0"
+			prefix="cm" />
+		<namespace uri="http://www.sinekarta.org/alfresco/model/content/1.0"
+			prefix="sinekarta" />
+	</namespaces>
+
+	<permissionSet type="sinekarta:archive" expose="selected">
+
+		<!-- Sinekarta archive specific roles. -->
+
+		<permissionGroup name="SinekartaRCS" allowFullControl="false" expose="true">
+			<includePermissionGroup permissionGroup="Read" type="sys:base" />
+			<includePermissionGroup permissionGroup="AddChildren" type="sys:base" />
+			<includePermissionGroup permissionGroup="Write" type="sys:base" />
+		</permissionGroup>
+		<permissionGroup name="SinekartaUser" allowFullControl="false" expose="true">
+			<includePermissionGroup permissionGroup="Read" type="sys:base" />
+			<includePermissionGroup permissionGroup="AddChildren" type="sys:base" />
+		</permissionGroup>
+
+	</permissionSet>
+
+</permissions>
