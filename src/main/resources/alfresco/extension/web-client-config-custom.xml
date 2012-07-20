@@ -18,6 +18,11 @@
  -->
 <alfresco-config>
 
+	<config evaluator="string-compare" condition="Languages">
+		<languages>
+			<language locale="it_IT">Italiano</language>
+		</languages>
+	</config>
 	<!-- 
 	new wizard for creating sinekarta archive space
 	 -->
